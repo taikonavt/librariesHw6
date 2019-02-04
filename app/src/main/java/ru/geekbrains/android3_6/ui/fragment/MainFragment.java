@@ -17,6 +17,10 @@ import butterknife.ButterKnife;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import ru.geekbrains.android3_6.App;
 import ru.geekbrains.android3_6.R;
@@ -50,16 +54,17 @@ public class MainFragment extends MvpAppCompatFragment implements MainView {
     @InjectPresenter
     MainPresenter presenter;
 
-    RepoRVAdapter adapter;
+    @Named("glide")
+    @Inject
     ImageLoader<ImageView> imageLoader;
+    RepoRVAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, null);
+        App.getInstance().getAppComponent().inject(this);
         ButterKnife.bind(this, view);
-
-        imageLoader = new ImageLoaderGlide();
 
         reposRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         reposRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));

@@ -16,8 +16,7 @@ public class App extends Application
     private AppComponent appComponent;
 
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
         instance = this;
         Timber.plant(new Timber.DebugTree());

@@ -9,8 +9,10 @@ import ru.geekbrains.android3_6.mvp.model.image.ImageLoader;
 
 
 
-public class ImageLoaderPicasso implements ImageLoader<ImageView>
-{
+public class ImageLoaderPicasso implements ImageLoader<ImageView>{
+
+    public ImageLoaderPicasso(){}
+
     @Override
     public void loadInto(@Nullable String url, ImageView container)
     {
